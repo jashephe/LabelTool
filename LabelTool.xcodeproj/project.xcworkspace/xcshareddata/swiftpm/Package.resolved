@@ -1,0 +1,61 @@
+{
+  "object": {
+    "pins": [
+      {
+        "package": "Defaults",
+        "repositoryURL": "https://github.com/sindresorhus/Defaults.git",
+        "state": {
+          "branch": null,
+          "revision": "11c4b968ef490dd3eb2e214906a8a124b7655a1f",
+          "version": "4.0.0"
+        }
+      },
+      {
+        "package": "ExceptionCatcher",
+        "repositoryURL": "https://github.com/sindresorhus/ExceptionCatcher",
+        "state": {
+          "branch": null,
+          "revision": "751408a9580941d7afc0e958af990052e4e8d16b",
+          "version": "1.0.0"
+        }
+      },
+      {
+        "package": "Glimmer",
+        "repositoryURL": "https://github.com/jashephe/Glimmer.git",
+        "state": {
+          "branch": null,
+          "revision": "09763d853beccdd0ee6629dd0977e9d412f7c2e5",
+          "version": "1.0.0"
+        }
+      },
+      {
+        "package": "Preferences",
+        "repositoryURL": "https://github.com/sindresorhus/Preferences.git",
+        "state": {
+          "branch": null,
+          "revision": "73664ff9f9faeb40f4b8f2c02d21b4486c82cce9",
+          "version": "2.0.0"
+        }
+      },
+      {
+        "package": "Version",
+        "repositoryURL": "https://github.com/mxcl/Version.git",
+        "state": {
+          "branch": null,
+          "revision": "a94b48f36763c05629fc102837398505032dead9",
+          "version": "2.0.0"
+        }
+      },
+      {
+        "package": "ZXingObjC",
+        "repositoryURL": "https://github.com/zxingify/zxingify-objc.git",
+        "state": {
+          "branch": null,
+          "revision": "a2dbc8b38d4a35c9b784a0ee977103966ef8d909",
+          "version": "3.6.6"
+        }
+      }
+    ]
+  },
+  "version": 1
+}
