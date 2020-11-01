@@ -1,4 +1,5 @@
 import AppKit
+import Defaults
 
 extension LabelsData {
     mutating func importData(fromPasteboard pasteboard: NSPasteboard) {
@@ -12,7 +13,7 @@ extension LabelsData {
     func copyData(toPasteboard pasteboard: NSPasteboard) {
         pasteboard.clearContents()
 
-        let descriptors = self.fieldDescriptors.filter({ $0.type == .userDefined })
+        let descriptors = self.fieldDescriptors.filter({ $0.type == .userDefined }).filter({ Defaults[.labelValues][$0.name] == nil })
         var contents = descriptors.map(\.name).joined(separator: "\t")
         for index in 0..<self.count {
             contents += "\n" + descriptors.map({ self.value(atIndex: index, withDescriptor: $0) ?? "" }).joined(separator: "\t")
