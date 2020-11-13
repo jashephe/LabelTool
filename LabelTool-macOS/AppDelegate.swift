@@ -29,7 +29,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 
     //MARK: NSApplicationDelegate
 
-    func applicationDidFinishLaunching(_ aNotification: Notification) {
+    func applicationWillFinishLaunching(_ aNotification: Notification) {
         self.templatesManager = TemplatesManager(templatesDirectory: TemplatesManager.templatesDirectory!)!
         NSFileCoordinator.addFilePresenter(self.templatesManager)
 

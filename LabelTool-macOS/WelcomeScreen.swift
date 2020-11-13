@@ -106,7 +106,7 @@ private struct WelcomeScreen: View {
             Divider()
             HStack(spacing: 15) {
                 Button(action: {
-
+                    (NSApp.delegate as! AppDelegate).templatesManager.importTemplates(at: [])
                 }) {
                     Text("Import template...")
                 }

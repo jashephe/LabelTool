@@ -1,4 +1,5 @@
-import Foundation
+import AppKit
+import SwiftUI
 import Combine
 
 class TemplatesManager: NSObject, NSFilePresenter {
@@ -27,7 +28,17 @@ class TemplatesManager: NSObject, NSFilePresenter {
     }
 
     func importTemplates(at paths: [URL]) {
-        print("Importing \(paths)")
+        let importAlert = NSAlert()
+        importAlert.alertStyle = .informational
+        importAlert.messageText = "Import Templates"
+        importAlert.informativeText = "To import a template, move the template file to the templates folder."
+        importAlert.addButton(withTitle: "Open Templates Folder")
+        switch importAlert.runModal() {
+        case .alertFirstButtonReturn:
+            NSWorkspace.shared.open(self.templatesDirectory)
+        default:
+            break
+        }
     }
 
     //MARK: `NSFilePresenter` Conformance
