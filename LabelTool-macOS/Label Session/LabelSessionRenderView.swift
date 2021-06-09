@@ -39,14 +39,13 @@ struct LabelPreviewView: View {
                 Button(action: {
                     self.errorPopupVisible = true
                 }) {
-                    Image("warning").resizable().frame(width: 22, height: 22).fixedSize().foregroundColor(Color("warning")).shadow(radius: 2)
+                    Image(systemName: "exclamationmark.triangle.fill").font(.system(size: 16, weight: .regular)).foregroundColor(Color("warning")).shadow(radius: 2)
                 }
                 .buttonStyle(PlainButtonStyle())
-                .frame(width: 25, height: 25, alignment: .center)
                 .padding(.horizontal, 5)
                 .popover(isPresented: self.$errorPopupVisible, arrowEdge: .leading) {
                     HStack(spacing: 0) {
-                        Image("warning").resizable().foregroundColor(Color("warning")).frame(width: 22, height: 22).fixedSize().shadow(radius: 2)
+                        Image(systemName: "exclamationmark.triangle.fill").font(.system(size: 16, weight: .regular)).foregroundColor(Color("warning")).shadow(radius: 2)
                             .padding(.vertical, 20)
                             .padding(.horizontal, 10)
                         Divider()

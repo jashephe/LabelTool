@@ -97,7 +97,7 @@ private struct WelcomeScreen: View {
                             HStack(spacing: 0) {
                                 Text("\(templateURL.deletingPathExtension().lastPathComponent)")
                                 Spacer()
-                                Image("right").resizable().frame(width: 22, height: 22).fixedSize()
+                                Image(systemName: "chevron.right.circle").resizable().frame(width: 16, height: 16).fixedSize()
                             }.frame(maxWidth: .infinity, alignment: .leading).padding(.vertical, 4)
                         }.buttonStyle(self.listButtonStyle)
                     }

@@ -60,25 +60,3 @@ struct SimpleButtonStyle: ButtonStyle {
             .cornerRadius(self.cornerRadius)
     }
 }
-
-extension View {
-    func notificationOverlay<Content: View>(isVisible: Binding<Bool>, @ViewBuilder content: @escaping () -> Content) -> some View {
-        self.overlay(OverlayNotification(isVisible: isVisible, content: content), alignment: .top)
-    }
-}
-
-private struct OverlayNotification<Content: View>: View {
-
-    @Binding var isVisible: Bool
-    let content: () -> Content
-
-    var body: some View {
-        Group {
-            if isVisible {
-                HStack {
-                    self.content()
-                }.padding(.vertical, 10).padding(.horizontal, 15).background(Capsule().fill(Color("notificationBackground")).overlay(Capsule().stroke(Color("notificationBorder"))).shadow(radius: 5)).padding(.top, 15).transition(AnyTransition.move(edge: .bottom).animation(Animation.spring()))
-            }
-        }
-    }
-}

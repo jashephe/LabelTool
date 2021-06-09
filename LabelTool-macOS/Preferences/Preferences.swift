@@ -10,8 +10,8 @@ extension Preferences.PaneIdentifier {
 
 var sharedPreferencesWindowController = PreferencesWindowController(
     panes: [
-        Preferences.Pane(identifier: .general, title: "General", toolbarIcon: NSImage(named: NSImage.preferencesGeneralName)!) { GeneralPreferencesView() },
-        Preferences.Pane(identifier: .printers, title: "Printers", toolbarIcon: NSImage(named: NSImage.userAccountsName)!) { PrinterPreferencesView() }
+        Preferences.Pane(identifier: .general, title: "General", toolbarIcon: NSImage(systemSymbolName: "gear", accessibilityDescription: nil)!) { GeneralPreferencesView() },
+        Preferences.Pane(identifier: .printers, title: "Printers", toolbarIcon: NSImage(systemSymbolName: "printer", accessibilityDescription: nil)!) { PrinterPreferencesView() }
     ]
 )
 
@@ -75,7 +75,7 @@ private struct PrinterPreferencesView: View {
                                     self.printers.removeValue(forKey: printerNickname)
                                     self.showRemoveButtons = false
                                 }) {
-                                    Image("minus").resizable().frame(width: 18, height: 18, alignment: .center)
+                                    Image(systemName: "minus.circle").font(.system(size: 16, weight: .regular))
                                 }.foregroundColor(Color.red).buttonStyle(PlainButtonStyle()).padding(.horizontal, 5).transition(.peekInTrailing)
                             }
                         }
@@ -89,28 +89,22 @@ private struct PrinterPreferencesView: View {
                 self.newPrinterControlPort = "9200"
                 self.addPrinterPopupVisible = true
             }) {
-                Image("plus").resizable().frame(width: 18, height: 18, alignment: .center)
+                Image(systemName: "plus.circle").font(.system(size: 16, weight: .regular))
             }
             .foregroundColor(Color.accentColor)
             .buttonStyle(PlainButtonStyle())
             .popover(isPresented: self.$addPrinterPopupVisible) {
-                VStack(spacing: 5) {
-                    HStack {
+                VStack(alignment: .trailing, spacing: 10) {
+                    LazyVGrid(columns: [GridItem(.flexible(maximum: 80), alignment: .trailing), GridItem(.flexible(), alignment: .leading)], spacing: 5, content: {
                         Text("Nickname").font(.system(size: 12, weight: .bold, design: .default))
                         TextField("nickname", text: self.$newPrinterNickname)
-                    }
-                    HStack {
                         Text("Hostname").font(.system(size: 12, weight: .bold, design: .default))
                         TextField("hostname", text: self.$newPrinterHostname)
-                    }
-                    HStack {
                         Text("Print Port").font(.system(size: 12, weight: .bold, design: .default))
                         TextField("print port", text: self.$newPrinterPrintingPort)
-                    }
-                    HStack {
                         Text("Control Port").font(.system(size: 12, weight: .bold, design: .default))
                         TextField("control port", text: self.$newPrinterControlPort)
-                    }
+                    })
                     Button(action: {
                         if let hostname = URL(string: self.newPrinterHostname), let printPort = UInt16(self.newPrinterPrintingPort), let controlPort = UInt16(self.newPrinterControlPort) {
                             let newPrinterConfig = PrinterConfig(hostname: hostname, printPort: printPort, jsonControlPort: controlPort)
@@ -119,8 +113,8 @@ private struct PrinterPreferencesView: View {
                         }
                     }) {
                         Text("Add")
-                    }
-                }.padding(5).frame(minWidth: 250)
+                    }.keyboardShortcut(.defaultAction)
+                }.padding(10).frame(minWidth: 300)
             }
             .padding(.leading, 5)
             .frame(maxWidth: .infinity, alignment: .trailing)
@@ -156,7 +150,7 @@ struct KeyValueView: View {
                             self.dictionary.removeValue(forKey: key)
                             self.showRemoveButtons = false
                         }) {
-                            Image("minus").resizable().frame(width: 18, height: 18, alignment: .center)
+                            Image(systemName: "minus.circle").font(.system(size: 16, weight: .regular))
                         }.foregroundColor(Color.red).buttonStyle(PlainButtonStyle()).padding(.leading, 5).transition(.peekInTrailing)
                     }
                 }
@@ -175,7 +169,7 @@ struct KeyValueView: View {
                     self.newValue = ""
                     self.showRemoveButtons = false
                 }) {
-                    Image("plus").resizable().frame(width: 18, height: 18, alignment: .center)
+                    Image(systemName: "plus.circle").font(.system(size: 16, weight: .regular))
                 }.foregroundColor(Color.accentColor).buttonStyle(PlainButtonStyle()).padding(.leading, 5).disabled(!self.enableAddButton)
             }
         }.padding().background(Color("controlBackground")).border(Color("controlBorder"), width: 1)
@@ -188,7 +182,7 @@ struct PrinterConfigView: View {
 
     var body: some View {
         HStack(spacing: 0) {
-            Image("printer").resizable().aspectRatio(contentMode: .fit).frame(maxWidth: 24, maxHeight: 24, alignment: .center).padding(5)
+            Image(systemName: "printer").font(.system(size: 20, weight: .regular)).padding(5)
             VStack(alignment: .leading) {
                 Text("\(self.printerNickname)").font(.system(size: 16, weight: .bold, design: .default)).lineLimit(1)
                 HStack(spacing: 0) {

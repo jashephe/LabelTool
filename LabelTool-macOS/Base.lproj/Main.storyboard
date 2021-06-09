@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="17156" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="18122" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
-        <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="17156"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="18122"/>
     </dependencies>
     <scenes>
         <!--Application-->
@@ -79,22 +78,11 @@
                                         <menuItem title="New template..." keyEquivalent="N" id="9dg-Mj-KWt"/>
                                         <menuItem title="Save template" keyEquivalent="s" id="tdH-5N-FY6"/>
                                         <menuItem isSeparatorItem="YES" id="Joh-XU-2FR"/>
-                                        <menuItem title="Import template..." keyEquivalent="I" id="8al-GC-h2m"/>
                                         <menuItem title="Open Templates folder" id="PeI-zp-dPd">
                                             <modifierMask key="keyEquivalentModifierMask"/>
                                             <connections>
                                                 <action selector="openTemplatesFolder:" target="Voe-Tx-rLC" id="oau-yt-XVK"/>
                                             </connections>
-                                        </menuItem>
-                                    </items>
-                                </menu>
-                            </menuItem>
-                            <menuItem title="Printers" id="lXT-V9-ybn">
-                                <modifierMask key="keyEquivalentModifierMask"/>
-                                <menu key="submenu" title="Printers" id="Hne-4m-8wn">
-                                    <items>
-                                        <menuItem title="Default Printer" enabled="NO" id="t9h-d0-bQH">
-                                            <modifierMask key="keyEquivalentModifierMask"/>
                                         </menuItem>
                                     </items>
                                 </menu>

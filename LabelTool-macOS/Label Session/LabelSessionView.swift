@@ -11,7 +11,6 @@ struct LabelSessionView: View {
     @State private var lastPreviewScale: CGFloat = 1.0
     @State private var showPrinterChooser: Bool = false
 
-    @State private var showAlert: Bool = false
     @State private var showHelp: Bool = false
 
     private var previewScaleGesture: some Gesture {
@@ -76,36 +75,19 @@ struct LabelSessionView: View {
                 }
 
                 HStack(spacing: 5) {
-                    HStack(spacing: 5) {
-                        Button(action: {
-                            self.session.readDataFromClipboard()
-                        }) {
-                            Image("copy_from_clipboard").resizable()
-                        }.buttonStyle(PlainButtonStyle()).frame(width: 20, height: 20, alignment: .center)
-                        Button(action: {
-                            self.session.copyDataHeaderToClipboard()
-                        }) {
-                            Image("copy_to_clipboard").resizable()
-                        }.buttonStyle(PlainButtonStyle()).frame(width: 20, height: 20, alignment: .center)
-                    }.popover(isPresented: self.$showHelp, arrowEdge: .bottom) {
-                        VStack(alignment: .leading) {
-                            Text("Enter label data").font(.system(size: 12, weight: .bold, design: .default))
-                            Text("You can use these buttons to copy label data from the clipboard (or use ⌘C and ⌘V).").font(.system(size: 10, weight: .regular, design: .default))
-                        }.frame(width: 200, alignment: .leading).padding(10)
-                    }
                     Button(action: {
                         withAnimation {
                             self.session.data.clear()
                             self.session.renderLabels()
                         }
                     }) {
-                        Image("delete").resizable()
-                    }.buttonStyle(PlainButtonStyle()).frame(width: 20, height: 20, alignment: .center)
+                        Image(systemName: "delete.left").font(.system(size: 16, weight: .regular))
+                    }.buttonStyle(PlainButtonStyle())
                     Button(action: {
                         self.showHelp.toggle()
                     }) {
-                        Image("questionMark").resizable()
-                    }.buttonStyle(PlainButtonStyle()).frame(width: 20, height: 20, alignment: .center)
+                        Image(systemName: "questionmark.circle").font(.system(size: 16, weight: .regular))
+                    }.buttonStyle(PlainButtonStyle())
                     Spacer()
                     Text("\(self.session.data.count) label\(self.session.data.count != 1 ? "s" : "")").fixedSize()
                     Spacer()
@@ -113,20 +95,20 @@ struct LabelSessionView: View {
                         Button(action: {
                             self.previewScale = self.defaultPreviewScale
                         }) {
-                            Image("magnifying_glass").resizable()
-                        }.buttonStyle(PlainButtonStyle()).frame(width: 20, height: 20, alignment: .center)
+                            Image(systemName: "magnifyingglass").font(.system(size: 16, weight: .regular))
+                        }.buttonStyle(PlainButtonStyle())
                     }.onAppear(perform: {
                         self.previewScale = self.defaultPreviewScale
                     })
-                    .frame(width: 100)
+                    .frame(width: 120)
                 }.padding(.horizontal)
                 HStack(spacing: 10) {
                     Divider()
                     Button(action: {
                         self.showPrinterChooser = true
                     }) {
-                        Image("printer").resizable().foregroundColor(self.session.selectedPrinterName.isNil ? Color.accentColor : Color.primary)
-                    }.buttonStyle(PlainButtonStyle()).frame(width: 20, height: 20, alignment: .center).popover(isPresented: self.$showPrinterChooser, arrowEdge: .bottom) {
+                        Image(systemName: "printer").font(.system(size: 16, weight: .regular)).foregroundColor(self.session.selectedPrinterName.isNil ? Color.red : Color.primary)
+                    }.buttonStyle(PlainButtonStyle()).popover(isPresented: self.$showPrinterChooser, arrowEdge: .bottom) {
                         if self.session.possiblePrinters.count > 0 {
                             VStack {
                                 Picker("Printer", selection: self.$session.selectedPrinterName) {
@@ -144,9 +126,9 @@ struct LabelSessionView: View {
                                 Text("No printers configured.").fontWeight(.bold).padding(10)
                                 Divider()
                                 Button(action: {
-                                    sharedPreferencesWindowController.show()
+                                    sharedPreferencesWindowController.show(preferencePane: .printers)
                                 }) {
-                                    Text("Preferences")
+                                    Text("Add a Printer").keyboardShortcut(.defaultAction)
                                 }.padding(10)
                             }
                         }
@@ -159,12 +141,9 @@ struct LabelSessionView: View {
                         if self.session.selectedPrinterName.isNil {
                             self.showPrinterChooser = true
                         }
-                    }
+                    }.keyboardShortcut(.defaultAction)
                 }
             }.frame(height: 40).frame(maxWidth: .infinity).padding(.horizontal, 10)
-        }.notificationOverlay(isVisible: self.$showAlert) {
-            Image("warning").resizable().frame(width: 22, height: 22).fixedSize()
-            Text("Notification")
         }
     }
 }
