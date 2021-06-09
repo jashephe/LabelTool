@@ -9,7 +9,7 @@ extension Defaults.Keys {
     static let labelValues = Key<[String: String]>("labelValues", default: [:], suite: defaultsSuite)
 }
 
-struct PrinterConfig: Codable, Hashable {
+struct PrinterConfig: Codable, Defaults.Serializable, Hashable {
     /// The hostname of the print server
     var hostname: URL
     /// The JetDirect/AppSocket raw printer port to which print data should be sent

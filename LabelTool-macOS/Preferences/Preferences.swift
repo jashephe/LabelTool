@@ -73,7 +73,6 @@ private struct PrinterPreferencesView: View {
                             if self.showRemoveButtons {
                                 Button(action: {
                                     self.printers.removeValue(forKey: printerNickname)
-                                    self.showRemoveButtons = false
                                 }) {
                                     Image(systemName: "minus.circle").font(.system(size: 16, weight: .regular))
                                 }.foregroundColor(Color.red).buttonStyle(PlainButtonStyle()).padding(.horizontal, 5).transition(.peekInTrailing)
@@ -148,7 +147,6 @@ struct KeyValueView: View {
                     if self.showRemoveButtons {
                         Button(action: {
                             self.dictionary.removeValue(forKey: key)
-                            self.showRemoveButtons = false
                         }) {
                             Image(systemName: "minus.circle").font(.system(size: 16, weight: .regular))
                         }.foregroundColor(Color.red).buttonStyle(PlainButtonStyle()).padding(.leading, 5).transition(.peekInTrailing)

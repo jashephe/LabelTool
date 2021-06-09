@@ -3,6 +3,7 @@ import SwiftUI
 import Combine
 import Glimmer
 import Version
+import Defaults
 
 @NSApplicationMain
 class AppDelegate: NSObject, NSApplicationDelegate {
@@ -32,6 +33,9 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     func applicationWillFinishLaunching(_ aNotification: Notification) {
         self.templatesManager = TemplatesManager(templatesDirectory: TemplatesManager.templatesDirectory!)!
         NSFileCoordinator.addFilePresenter(self.templatesManager)
+
+        //Defaults.migrate(.labelValues, to: .v5)
+        //Defaults.migrate(.printers, to: .v5)
 
         self.welcomeScreenManager = WelcomeScreenManager()
 
