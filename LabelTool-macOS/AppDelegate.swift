@@ -34,8 +34,8 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         self.templatesManager = TemplatesManager(templatesDirectory: TemplatesManager.templatesDirectory!)!
         NSFileCoordinator.addFilePresenter(self.templatesManager)
 
-        //Defaults.migrate(.labelValues, to: .v5)
-        //Defaults.migrate(.printers, to: .v5)
+        Defaults.migrate(.labelValues, to: .v5)
+        Defaults.migrate(.printers, to: .v5)
 
         self.welcomeScreenManager = WelcomeScreenManager()
 
